@@ -1,1 +1,1 @@
-# [shopping cart](https://wonderful-agnesi-ae3d1e.netlify.app) || Корзина покупателя
+# [Shopping cart](https://wonderful-agnesi-ae3d1e.netlify.app) || Корзина покупателя
