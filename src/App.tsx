@@ -38,11 +38,33 @@ function App() {
   }
 
   function handleAddToCart(clickedItem: CartItemType) {
-    return null;
+    setCartItems(prev => {
+      //1. Is the item already added in the cart?
+      const isItemInCart = prev.find(item => item.id === clickedItem.id);
+
+      if (isItemInCart) {
+        return prev.map(item => (
+          item.id === clickedItem.id
+            ? { ...item, amount: item.amount + 1 }
+            : item
+        ));
+      }
+      // First time the item is added
+      return [...prev, { ...clickedItem, amount: 1 }];
+    })
   }
 
-  function handleRemoveFromCart() {
-    return null;
+  function handleRemoveFromCart(id: number) {
+    setCartItems(prev => (
+      prev.reduce((acc, item) => {
+        if (item.id === id) {
+          if (item.amount === 1) return acc;
+          return [...acc, { ...item, amount: item.amount - 1 }];
+        } else {
+          return [...acc, item];
+        }
+      }, [] as CartItemType[])
+    ))
   }
 
   if (isLoading) return <LinearProgress />;
